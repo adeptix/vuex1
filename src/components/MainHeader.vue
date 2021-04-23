@@ -1,18 +1,35 @@
 <template>
   <header>
-    <div class="container">
+    <div class="container" v-if="authUser">
       <h1>Posts Vuex</h1>
       <button class="profile_btn">
-        <img src="@/assets/user.png">
-        <h4>имя</h4>
+        <img :src="require('@/assets/' + authUser.image)">
+        <h4>{{ authUser.name }}</h4>
       </button>
     </div>
   </header>
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
-  name: "MainHeader"
+  name: "MainHeader",
+
+  data() {
+    return {}
+  },
+
+  methods: {
+
+  },
+
+  computed: {
+    ...mapGetters({
+      authUser: "getAuthUser"
+    })
+  }
+
 }
 </script>
 
@@ -57,11 +74,11 @@ h1 {
   margin: 15px;
 }
 
-.profile_btn:hover{
+.profile_btn:hover {
   background: #151515;
 }
 
-h4{
+h4 {
   color: white;
   margin-left: 10px;
   margin-right: 10px;

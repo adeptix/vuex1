@@ -5,7 +5,7 @@ export default [
         role: "Пользователь",
         email: "some@email.com",
         registerDate: "2007-01-01",
-        image: "@/assets/user.png"
+        image: 'user.png'
     },
 
     {
@@ -14,7 +14,7 @@ export default [
         role: "Автор / Редактор",
         email: "ny@email.com",
         registerDate: "2020-03-01",
-        image: "@/assets/writer.png"
+        image: "writer.png"
     },
 
     {
@@ -23,7 +23,7 @@ export default [
         role: "Админ",
         email: "boss@email.com",
         registerDate: "1900-01-05",
-        image: "@/assets/admin.png"
+        image: "admin.png"
     },
 
 ]
