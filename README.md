@@ -1,24 +1,7 @@
-# vuex1
+# дз с vuex
 
-## Project setup
-```
-npm install
-```
+## deep dark theme
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+можно просматривать посты, юзеров, и добавлять посты в избранное.
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+*Вернуться на главную можно, нажав на Posts Vuex
