@@ -13,5 +13,14 @@ body {
 
 html {
   height: 100%;
+  color: white;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin: 0;
+  outline: none;
 }
 </style>

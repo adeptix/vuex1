@@ -15,6 +15,10 @@ export default {
   name: 'MainLayout',
   components: {
     MainHeader
+  },
+
+  created() {
+    this.$store.dispatch('fetchData')
   }
 }
 </script>

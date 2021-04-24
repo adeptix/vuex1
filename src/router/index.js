@@ -6,47 +6,54 @@ import UserPosts from "@/views/UserPosts";
 import UserFavorite from "@/views/UserFavorite";
 import PostPage from "@/views/PostPage";
 import MainLayout from "@/views/MainLayout";
+import AllPostsPage from "@/views/AllPostsPage";
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'mainLayout',
-    component: MainLayout
-  },
-  {
-    path: '/posts/:id',
-    name: 'postPage',
-    component: PostPage
-  },
-  {
-    path: 'user/:id',
-    name: 'userLayout',
-    component: UserLayout,
-    children: [
-      {
-        path: '',
-        name: 'user',
-        component: UserProfile,
-      },
-      {
-        path: 'posts',
-        name: 'posts',
-        component: UserPosts,
-      },
-      {
-        path: 'favorite',
-        name: 'favorite',
-        component: UserFavorite,
-      }
-    ]
-  }
+    {
+        path: '/',
+        component: MainLayout,
+        children: [
+            {
+              path: '',
+              name: 'allPostsPage',
+              component:  AllPostsPage
+            },
+
+            {
+                path: 'post/:id',
+                name: 'postPage',
+                component: PostPage
+            },
+            {
+                path: 'user/:id',
+                component: UserLayout,
+                children: [
+                    {
+                        path: '',
+                        name: 'userProfile',
+                        component: UserProfile,
+                    },
+                    {
+                        path: 'posts',
+                        name: 'userPosts',
+                        component: UserPosts,
+                    },
+                    {
+                        path: 'favorite',
+                        name: 'userFavorite',
+                        component: UserFavorite,
+                    }
+                ]
+            },
+        ]
+    }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  routes
+    mode: 'history',
+    routes
 })
 
 export default router

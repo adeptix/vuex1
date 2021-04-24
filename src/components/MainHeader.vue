@@ -1,21 +1,21 @@
 <template>
   <header>
-    <div class="container" v-if="authUser">
-      <h1>Posts Vuex</h1>
-      <button class="profile_btn">
-        <img :src="require('@/assets/' + authUser.image)">
-        <h4>{{ authUser.name }}</h4>
-      </button>
+    <div class="container">
+      <router-link class="main_link" :to="{name: 'allPostsPage'}">
+        <h1>Posts Vuex</h1>
+      </router-link>
+      <UserCard :user="authUser" v-if="authUser"/>
     </div>
   </header>
 </template>
 
 <script>
 import {mapGetters} from "vuex";
+import UserCard from "@/components/UserCard";
 
 export default {
   name: "MainHeader",
-
+  components: {UserCard},
   data() {
     return {}
   },
@@ -45,43 +45,18 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  color: aliceblue;
+  color: white;
   padding-left: 5%;
+}
+
+.main_link{
+  color: white;
+  text-decoration: none;
 }
 
 h1 {
 
 }
 
-.profile_btn {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  border: none;
-  background: none;
-  cursor: pointer;
-  margin: 0;
-  padding-right: 30px;
-  outline: none;
-}
-
-.profile_btn img {
-  height: 55px;
-  max-height: 55px;
-  border-radius: 50%;
-  border: 3px solid #AF7AC5;
-  margin: 15px;
-}
-
-.profile_btn:hover {
-  background: #151515;
-}
-
-h4 {
-  color: white;
-  margin-left: 10px;
-  margin-right: 10px;
-}
 
 </style>
