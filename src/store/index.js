@@ -43,6 +43,14 @@ export default new Vuex.Store({
 
         getUserPosts: (state) => (userID) => {
             return state.posts.filter(p => p.authorID == userID)
+        },
+
+        getFavoritePosts(state){
+            return state.posts.filter(p => state.favoritesIDs.includes(p.id))
+        },
+
+        isInFavorites: (state) => (postID) => {
+            return state.favoritesIDs.indexOf(postID) !== -1
         }
     },
 

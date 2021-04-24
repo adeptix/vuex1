@@ -3,9 +3,13 @@
     <div class="info">
       <h3>{{ post.title }}</h3>
       <h6>{{ post.date }}</h6>
-      <h5>{{author.name}}</h5>
+      <h5>{{ author.name }}</h5>
     </div>
-    <button class="star_btn">
+    <button class="star_btn"
+            @click="clickFavorite"
+            v-bind:class="{fav : isFavorite}"
+            v-if="!isMyPost"
+    >
       <svg class="star" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
            viewBox="0 0 477.905 477.905" enable-background="new 0 0 477.905 477.905" xml:space="preserve"
            width="20px" height="20px">
@@ -29,18 +33,44 @@ export default {
   name: "PostHeader",
   props: ['post'],
 
-  data(){
+  data() {
     return {
-      author : null
+      author: null
     }
   },
 
   created() {
-    if (!this.post){
+    if (!this.post) {
       return
     }
 
     this.author = this.$store.getters.getUserByID(this.post.authorID)
+  },
+
+  computed: {
+    isFavorite: {
+      get: function () {
+        return this.$store.getters.isInFavorites(this.post.id)
+      },
+
+      set: function (isFav) {
+        if (isFav) {
+          this.$store.commit('addFavorite', this.post.id)
+        } else {
+          this.$store.commit('removeFavorite', this.post.id)
+        }
+      }
+    },
+
+    isMyPost: function () {
+      return this.$store.getters.getAuthID == this.post.authorID
+    }
+  },
+
+  methods: {
+    clickFavorite() {
+      this.isFavorite = !this.isFavorite
+    }
   }
 }
 </script>
@@ -61,7 +91,11 @@ export default {
   fill: #AF7AC5;
 }
 
-.info{
+.fav {
+  fill: #AF7AC5;
+}
+
+.info {
   margin-left: 10px;
 }
 
@@ -69,7 +103,7 @@ h3 {
   margin-bottom: 0;
 }
 
-h6{
+h6 {
   margin-top: 5px;
 }
 
